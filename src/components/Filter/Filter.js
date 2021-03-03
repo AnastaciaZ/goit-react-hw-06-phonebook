@@ -14,10 +14,10 @@ const Filter = ({ items, name, onChangeFilter}) =>(
         <div className={s.container}>
             <label className={ s.labelFilter}>Find contacts by name
              <br/>
-             <input className={s.filterInput}
-                 type="text"
-                 value={name}
-                 onChange={onChangeFilter} />
+                <input className={s.filterInput}
+                    type="text"
+                    value={name}
+                    onChange={ (e)=>onChangeFilter(e.target.value)} />
             </label>    
          </div>
         </CSSTransition>
@@ -29,8 +29,8 @@ const mapStateToProps = state => ({
     items: state.contacts.items,
 });
 
-const mapDispatchToProps = dispatch => ({
-   onChangeFilter: e=>dispatch(contactsActions.changeFilter(e.target.value)),
-});
+const mapDispatchToProps = {
+    onChangeFilter: contactsActions.changeFilter,
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Filter);
